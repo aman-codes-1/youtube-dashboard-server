@@ -9,7 +9,8 @@
     "test:coverage": "jest --coverage",
     "dev": "ts-node-dev --respawn --clear --transpile-only --ignore-watch node_modules ./src/app.ts",
     "build": "tsc",
-    "start": "ts-node src/app.ts"
+    "start": "node dist/app.js",
+    "start:prod": "NODE_ENV=production node dist/app.js"
   },
   "keywords": [],
   "author": "",
