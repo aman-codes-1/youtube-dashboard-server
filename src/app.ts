@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -6,7 +6,13 @@ import routes from "./routes";
 
 const app = express();
 
-app.use(cors({ origin: process.env.CLIENT_URI }));
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use("/api", routes);
 
@@ -15,9 +21,9 @@ const port = process.env.PORT || 4000;
 const connectDB = async (): Promise<void> => {
   try {
     await mongoose.connect(process.env.MONGO_URI || "");
-    console.log("✅ MongoDB connected")
+    console.log("✅ MongoDB connected");
   } catch (err) {
-    console.error("❌ MongoDB connection error:", err)
+    console.error("❌ MongoDB connection error:", err);
     throw err;
   }
 };
