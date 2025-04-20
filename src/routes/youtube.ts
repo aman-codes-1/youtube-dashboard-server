@@ -21,7 +21,7 @@ router.post('/video/:videoId', async (req, res, next) => {
 });
 
 // Update title/description
-router.post('/video/:videoId/metadata', async (req, res, next) => {
+router.put('/video/:videoId/metadata', async (req, res, next) => {
   try {
     await updateMetadata(req.params.videoId, req.body, req.body.tokens);
     res.sendStatus(204);
